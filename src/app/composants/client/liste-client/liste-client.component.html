@@ -1,0 +1,167 @@
+<style>
+    .paginate_button {
+        background-color: green;
+    }
+</style>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            Liste des clients
+            <button (click)="afficherButtonSave()" class="btn btn-success" style="position: absolute;right: 30px;"
+                data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus mr-2"></i>Ajouter
+                client</button>
+
+        </div>
+        <div class="card-body">
+            <div class="mb-4">
+                <div class="row mt-4 mb-4">
+                    <div class="align-items-center col-md-4 col-sm-12 pull-left">
+                        <div class="row g-3 ">
+                            <div class="col-auto">
+                                <label for="afficherElement" class="col-form-label">Afficher</label>
+                            </div>
+                            <div class="col-auto">
+                                <select (change)="changerTaille($event)" class="form-select" id="afficherElement">
+                                    <option *ngFor="let size of tailles" [ngValue]="size">
+                                        {{ size }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <span id="passwordHelpInline" class="form-text">
+                                    Elements
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 pull-right mr-3 col-sm-12" style="position: absolute;right:0px">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <label for="recherche">Rechercher</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="recherche" name="recherche" class="form-control"
+                                    (input)="changer()" [formControl]="recherche" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table datatable class="row-border w-100 table table-striped text-center" [dtOptions]="dtOptions">
+                <thead class="bg-success text-white">
+                    <tr>
+                        <th>#</th>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Telephone</th>
+                        <th>E-mail</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="cls?.length !=0">
+                    <tr *ngFor="let c of cls | 
+                        paginate:{itemsPerPage:taille,
+                                    currentPage:page,
+                                    totalItems :cls.length
+                                };let i=index ">
+                        <td>{{i+1}}</td>
+                        <td>{{ c.prenom }}</td>
+                        <td>{{ c.nom }}</td>
+                        <td>{{ c.adresse }}</td>
+                        <td>{{ c.telephone }}</td>
+                        <td>{{ c.email }}</td>
+                        <td>
+                            <!-- <a class="btn btn-warning" [routerLink]="[i+1]" routerLinkActive="router-link-active"><i
+                                    class="fa fa-eye"></i></a> -->
+                            <button class="btn btn-warning text-white" (click)="afficherDetail(c)">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                            <button class="btn btn-primary ml-1" (click)="modifier(c)"><i
+                                    class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger ml-1" (click)="supprimer(c)"><i
+                                    class="fa fa-trash-alt"></i></button>
+
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div *ngIf="cls.length <1">
+                Pas de client
+            </div>
+            <pagination-controls (pageChange)="changerPage($event)" previousLabel="precedent" nextLabel="suivant"
+                [responsive]="true" *ngIf="cls.length >0"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+<!--ajout client-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered w-100">
+        <div class="modal-content">
+            <div class="modal-header " style="background: #198754;color: white;">
+                <h5 class="modal-title" id="exampleModalLabel">Ajouter un client</h5>
+                <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <div class="">
+                        <form [formGroup]="formGroup" (ngSubmit)="submit()">
+                            <div class="row mb-3">
+                                <div class="form-group col-md-6">
+                                    <label>Nom</label>
+                                    <input type="text" class="form-control" formControlName="nom" name="nom">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Prenom</label>
+                                    <input type="text" class="form-control" formControlName="prenom" name="prenom">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="form-group col-md-6">
+                                    <label>Adresse</label>
+                                    <input type="text" class="form-control" formControlName="adresse" name="adresse">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Telephone</label>
+                                    <input type="text" class="form-control" formControlName="telephone" name="telephone"
+                                        [ngClass]="errorTelephone ?'is-invalid':''" id="champsTelephone">
+                                    <div class="text-danger" *ngIf="errorTelephone">
+                                        ce numero est déja utilisé
+                                    </div>
+                                    <div class="text-danger"
+                                        *ngIf="submitErr && formGroup.invalid && formGroup.controls.telephone.errors?.required">
+                                        le champs telephone est obligatoire
+                                    </div>
+                                    <div class="text-danger"
+                                        *ngIf="formGroup.invalid && formGroup.controls.telephone.errors?.erreurTelephone">
+                                        le numero de telephone est invalide il doit commencer par 77,76
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" formControlName="email" name="email"
+                                    [ngClass]="errorEmail ?'is-invalid':''">
+                                <div class="text-danger" *ngIf="errorEmail">
+                                    ce email est déja utilisé
+                                </div>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button *ngIf="isModify == false" type="button" type="submit" class="btn btn-primary"
+                                    [disabled]="formGroup.invalid">Enregistrer</button>
+                                <button *ngIf="isModify" type="button" type="submit" class="btn btn-primary"
+                                    [disabled]="formGroup.invalid">Modifier</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--fin ajout-->
+        <app-creer-client></app-creer-client>

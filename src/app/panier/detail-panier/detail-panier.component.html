@@ -1,0 +1,28 @@
+<div class="card card-deco w-100">
+    <div class="row container m-4" style="align-items:center;">
+        <div class="col-md-2">
+            <img src="{{medicament.image}}" />
+        </div>
+        <div class="col-md-6">
+            {{medicament.libelle}}
+        </div>
+        <div class="col-md-4 text-right">
+            <strong>{{medicament.prix}} FCFA</strong>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn" (click)="supprimer(medicament)">
+                    <i class="fa fa-trash-alt mr-2"></i> <strong>supprimer</strong>
+                </button>
+            </div>
+            <div class="col-md-10 text-right">
+                <button type="button" class="btn btn-sm btn-success" (click)="diminuer()"
+                    [disabled]="medicament.quantite ==1">-</button>
+                {{medicament.quantite}}
+                <button type="button" class="btn btn-sm btn-success" (click)="augmenter()">+</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

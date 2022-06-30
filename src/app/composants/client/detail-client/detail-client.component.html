@@ -1,0 +1,273 @@
+<div class="container s" style="margin-top: 10px; padding: 10px 20px 10px 20px;">
+    <div class="row container shadow p3">
+        <div class="col-md-4">
+            <div class="userProfile">
+                <img src="../../../../assets/img/user.png" class="rounded-circle" alt="image">
+
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md">
+                    <div class="police1">
+                        {{client.prenom}} {{client.nom}}
+                    </div>
+                    <div class="police2">adresse: {{client.adresse}}</div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md">
+                    <button class="btnCrediterDebiter float-end">
+                        <i class="fad fa-arrow-left text-xs mr-2"></i>
+                        retour
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 banierGauche">
+            <div class="card shadow p3">
+                <div class="text-center alert alert-success police2">INFORMATIONS</div>
+                <div class="card-body">
+                    <div class="police2">
+                        <i class="fad fa-share text-xs mr-2"></i> Prenom : <em class="police3"> {{client.prenom}}</em>
+                    </div>
+                    <hr>
+                    <div class="police2">
+                        <i class="fad fa-share text-xs mr-2"></i> Nom :<em class="police3"> {{client.nom}}</em>
+                    </div>
+                    <hr>
+                    <div class="police2">
+                        <i class="fad fa-share text-xs mr-2"></i> Adresse :<em class="police3"> {{client.adresse}}</em>
+                    </div>
+                    <hr>
+                    <div class="police2">
+                        <i class="fad fa-share text-xs mr-2"></i> Telephone :<em class="police3"> {{client.telephone}}</em>
+                    </div>
+                    <hr>
+                    <div class="police2">
+                        <i class="fad fa-share text-xs mr-2"></i> Email :<em class="police3"> {{client.adresse}}</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow banierDroite">
+
+                <div class="text-center alert alert-ligth police2">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Rechercher une entreprise">
+                        <span class="input-group-text bg-transparent"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="fm-search">
+                            <div class="mb-0">
+                                <marquee direction="">Liste des entreprise en collaboration</marquee>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nom</th>
+                                    <th>Telephone</th>
+                                    <th>Adresse</th>
+                                    <th>Taux de PEC</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Xaragn Dev</td>
+                                    <td>77 879 51 72</td>
+                                    <td>Mariste</td>
+
+                                    <td><span class="badge bg-success">30%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Campus digital</td>
+                                    <td>77 879 51 72</td>
+                                    <td>Point E</td>
+
+                                    <td><span class="badge bg-success">40%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Teranga Service</td>
+                                    <td>77 879 51 72</td>
+                                    <td>Dakar</td>
+
+                                    <td><span class="badge bg-success">10%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Xarala</td>
+                                    <td>77 879 51 72</td>
+                                    <td>Diamniadio</td>
+
+                                    <td><span class="badge bg-success">30%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <br>
+
+    <div class="row" style="margin-bottom: 30px;">
+
+        <style>
+            .paginate_button {
+                background-color: green;
+            }
+        </style>
+        <div class="container mt-4">
+            <div class="card card-light">
+                <div class="card-header">
+                    <h5 class="mb-0 text-success font-weight-bold">Historique Achat<span class=" float-end text-secondary">Total: <span class="text-success">50 590 F</span>
+                        </span>
+                    </h5>
+                </div>
+                <div class="card-body table-responsive">
+                    <table datatable class="row-border w-100 table table-striped text-center table-collapse table-hover" [dtOptions]="dtOptions">
+                        <thead class="" style="background:#198754;color: white;">
+                            <tr>
+                                <th>#</th>
+                                <th>Nom medicament</th>
+                                <th>Type</th>
+                                <th>Quantite</th>
+                                <th>Cout(Franc CFA)</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>genfort</td>
+                                <td>comprime</td>
+                                <td>3</td>
+                                <td>6000</td>
+                                <td>12/10/2020</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Doliprane</td>
+                                <td>comprime</td>
+                                <td>10</td>
+                                <td>25090</td>
+                                <td>02/11/2020</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Efferalgan</td>
+                                <td>comprime</td>
+                                <td>12</td>
+                                <td>15000</td>
+                                <td>27/09/2020</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>dynamozen</td>
+                                <td>sirop</td>
+                                <td>1</td>
+                                <td>4500</td>
+                                <td>30/10/2020</td>
+                            </tr>
+
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-12">
+
+            <div class="card shadow banierDroite">
+                <div class="card-header pb-0">
+
+                    <div class="mb-0">
+                        <h5 class="mb-0 text-success font-weight-bold">Historique Achat<span
+                                class=" float-end text-secondary">500
+                                OOO F</span></h5>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nom medicament</th>
+                                <th>Type</th>
+                                <th>Quantite</th>
+                                <th>Cout(Franc CFA)</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2</td>
+                                <td>genfort</td>
+                                <td>comprime</td>
+                                <td>3</td>
+                                <td>6000.100</td>
+                                <td>12/10/2020</td>
+
+                                <td><span class="badge bg-success">30%</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Campus digital</td>
+                                <td>77 879 51 72</td>
+                                <td>Point E</td>
+
+                                <td><span class="badge bg-success">40%</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Teranga Service</td>
+                                <td>77 879 51 72</td>
+                                <td>Dakar</td>
+
+                                <td><span class="badge bg-success">10%</span></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Xarala</td>
+                                <td>77 879 51 72</td>
+                                <td>Diamniadio</td>
+
+                                <td><span class="badge bg-success">30%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div> -->
+
+        <!-- <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    h
+                </div>
+            </div>
+        </div> -->
+    </div>

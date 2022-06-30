@@ -1,0 +1,98 @@
+<div class="container mt-4 mb-4 justify-content-center">
+    <div class="card">
+        <div class="card-body">
+            <h3>Creation de compte</h3>
+            <hr />
+            <div class="row justify-content-center">
+                <div class="col-md-3 border-right mr-1 text-center">
+                    <img src="assets/img/logoLuxDev1aa.png" height="" width="" class="" /><strong>SENPHARMALUX</strong>
+                </div>
+                <div class="col-md-8 card_deco">
+                    <form class="form" [formGroup]="formGroup" (ngSubmit)="submit()">
+                        <div class="row  mb-4">
+                            <div class="form-group col-md-6">
+                                <label>Nom *</label>
+                                <input type="text" pattern="[a-zA-Z ]*" class="form-control" placeholder="entrez votre nom" formControlName="nom" [ngClass]="submitErr && formGroup.invalid && formGroup.controls.nom.errors?.required?'is-invalid':''" />
+                                <div class="text-danger" *ngIf="submitErr && formGroup.invalid && formGroup.controls.nom.errors?.required">
+                                    le champs nom est obligatoire
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Prenom *</label>
+                                <input type="text" class="form-control" formControlName="prenom" placeholder="entrez votre prenom" [ngClass]="submitErr && formGroup.invalid && formGroup.controls.prenom.errors?.required?'is-invalid':''" />
+                                <div class="text-danger" *ngIf="submitErr && formGroup.invalid && formGroup.controls.prenom.errors?.required">
+                                    le champs prenom est obligatoire
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row  mb-4">
+                            <div class="form-group col-md-6">
+                                <label>adresse</label>
+                                <input type="text" class="form-control" formControlName="adresse" placeholder="entrez votre adresse" [ngClass]="submitErr && formGroup.invalid && formGroup.controls.adresse.errors?.required?'is-invalid':''" />
+                                <div class="text-danger" *ngIf="submitErr && formGroup.invalid && formGroup.controls.adresse.errors?.required">
+                                    le champs adresse est obligatoire
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Telephone</label>
+                                <input type="text" class="form-control" formControlName="telephone" maxlength="9" placeholder="entrez votre numero de telephone" id="champsTelephone" [ngClass]="erreurTelephone || formGroup.controls.telephone.errors?.erreurTelephone|| (submitErr && formGroup.invalid &&  formGroup.controls.telephone.errors?.required) ?'is-invalid':''"
+                                />
+                                <div class="text-danger" *ngIf="erreurTelephone">
+                                    le numéro de téléphone est déja utilisé
+                                </div>
+                                <div class="text-danger" *ngIf="submitErr && formGroup.invalid && formGroup.controls.telephone.errors?.required">
+                                    le champs téléphone est obligatoire
+                                </div>
+                                <div class="text-danger" *ngIf="formGroup.invalid && formGroup.controls.telephone.errors?.erreurTelephone">
+                                    le numéro de téléphone est invalide, il doit commencer par 77,76
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" class="form-control" formControlName="email" placeholder="entrez votre adresse email" [ngClass]="erreurEmail || ( submitErr && formGroup.invalid && formGroup.controls.email.errors?.email|| formGroup.controls.email.errors?.required)  ?'is-invalid':''"
+                                />
+                            </div>
+                            <div class="text-danger" *ngIf="submitErr && formGroup.invalid && formGroup.controls.email.errors?.required">
+                                le champs email est obligatoire
+                            </div>
+                            <div class="text-danger" *ngIf="erreurEmail">
+                                l'email est déja utilisé
+                            </div>
+
+                        </div>
+                        <div class="row  mb-4">
+                            <div class="form-group col-md-6">
+                                <label>mot de passe</label>
+                                <input type="password" class="form-control" formControlName="motDePasse" placeholder="entrez votre mot de passe" [ngClass]="submitErr && formGroup.invalid && formGroup.controls.motDePasse.errors?.required  ?'is-invalid':''" />
+                                <div class="text-danger" *ngIf="submitErr && formGroup.invalid && formGroup.controls.motDePasse.errors?.required">
+                                    le champs mot de passes est obligatoire
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>confirmation de mot de passe</label>
+                                <input type="password" class="form-control" formControlName="configmotDePasse" placeholder="confirmez votre mot de passe" [ngClass]="formGroup.controls.configmotDePasse.errors?.errorMp || (submitErr && formGroup.invalid && formGroup.controls.configmotDePasse.errors?.required)  ?'is-invalid':''"
+                                />
+                                <div class="text-danger" *ngIf="submitErr && formGroup.invalid && formGroup.controls.configmotDePasse.errors?.required">
+                                    le champs confimation mot de passe est obligatoire
+                                </div>
+                                <div class="text-danger" *ngIf="formGroup.invalid && formGroup.controls.configmotDePasse.errors?.errorMp">
+                                    les mot de passes ne sont pas les memes
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+
+                            <button type="submit" class="btn btn-success form-control">S'inscrire</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

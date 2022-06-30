@@ -1,0 +1,54 @@
+.userProfile{
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 50%;
+    text-align: center;
+    align-content: center;
+}
+
+.banierGauche{
+    margin: auto;
+    padding-top: 10px;
+}
+.banierDroite{
+    margin: 10px;
+    height: 400px;
+}
+.cardSolde{
+    margin: 20px;
+    padding: 30px;
+    width: 400px;
+    height: 100px;
+}
+.btnCrediterDebiter{
+    margin: 10px;
+    background-color: green;
+    color: white;
+    width: 150px;
+    height: 50px;
+    border-radius:15px;
+}
+.police1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    font-style: normal;
+    color: black;
+}
+.police2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    font-style: normal;
+    color: black;
+    opacity: .8;
+}
+.police3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: grey;
+   
+}

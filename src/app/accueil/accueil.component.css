@@ -1,0 +1,25 @@
+li a{
+    color: white;
+} 
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+#myCarousel {
+    /* height: 400px; */
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.med:hover{
+    filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.3));
+    border: 1px solid black;
+}

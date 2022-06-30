@@ -1,0 +1,20 @@
+<div class="container row mt-4 mb-4">
+    <div class="col-md-4">
+        <ul class="list-group w-100 card-deco">
+            <li class="list-group-item">
+                <a [routerLink]="['/mon-compte']" routerLinkActive="router-link-active"><i class="fa fa-user"></i> mon
+                    compte</a>
+            </li>
+            <li class="list-group-item"><a [routerLink]="['/mon-compte/mescommandes']"
+                    routerLinkActive="router-link-active"><i class="fad fa-shopping-basket"></i> mes
+                    commandes</a></li>
+            <li class="list-group-item"><a [routerLink]="['/mon-compte/modifier-mp']"
+                    routerLinkActive="router-link-active"><i class="fa fa-lock"></i> modifier votre mot de passe</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="card-deco col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>

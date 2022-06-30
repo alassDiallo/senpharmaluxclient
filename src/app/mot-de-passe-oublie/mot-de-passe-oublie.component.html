@@ -1,0 +1,37 @@
+<div class="container justify-content-center m-4">
+    <div class="row justify-content-center">
+        <div class="col-md-5 card-deco">
+            <div class="row justify-content-center">
+                <img src="assets/img/logoLuxDev1aa.png" width="300" height="200" class="text-center w-50" />
+            </div>
+            <div class="row">
+                <div class="text-center mb-4 mt-4">
+                    Récupérez votre mot de passe
+                    Vous pouvez demander une réinitialisation du mot de passe. Nous enverrons un code de sécurité par
+                    e-mail
+                    pour nous assurer que c'est bien vous qui y accédez.
+                </div>
+                <div>
+                    <form [formGroup]="formG" (ngSubmit)='submit()'>
+                        <div class="form-group mb-3">
+                            <label>Entrer votre email</label>
+                            <input type="email" name="email" class="form-control"
+                                placeholder="entrez votre adresse email" formControlName="email"
+                                [ngClass]="errorEmailInvalid?'is-invalid':''" />
+
+                            <div class="text-danger" *ngIf="errorEmailInvalid">
+                                ce utilisateur n'existe pas
+
+                            </div>
+
+                        </div>
+                        <div class="mb-4">
+                            <button class="btn btn-success form-control" type="submit"
+                                [disabled]="formG.invalid">valider</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

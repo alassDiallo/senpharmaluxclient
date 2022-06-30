@@ -1,0 +1,42 @@
+<div class="justify-content-center mt-4">
+
+
+    <div class="container mt-4 justify-content-center">
+        <h5>modifier mon mot de passe</h5>
+        <hr />
+        <div class="row justify-content-center">
+            <div class="col-md-6 card-deco m-4">
+                <form class="mp m-4" [formGroup]="formG" (ngSubmit)="modifier()">
+                    <div class="row mb-4">
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" [ngClass]="erreurPassword ?'is-invalid':''"
+                                id="floatingInput" placeholder="entrez votre mot de passe actuel"
+                                formControlName="motDePasse">
+                            <label for="floatingInput" class="ml-2">Mot de passe actuel</label>
+                            <div *ngIf="erreurPassword" class="text-danger">
+                                le mot de passe est incorrect
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPassword"
+                                placeholder="entrez votre nouveau mot de passe" formControlName="newmotDePasse">
+                            <label for="floatingPassword" class="ml-2">Nouveau mot de passe</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingPasswordc"
+                                placeholder="saisissez de nouveau le mot de passe" formControlName="confmotDePasse">
+                            <label for="floatingPasswordc" class="ml-2">Saisissez de nouveau le mot de passe</label>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-success btn-lg form-control"
+                                [disabled]="formG.invalid">
+                                Enregistrer
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

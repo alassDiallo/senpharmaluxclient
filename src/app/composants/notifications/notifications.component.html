@@ -1,0 +1,102 @@
+<style>
+    .notification:hover {
+        background-color: green;
+        opacity: 0.3;
+        color: white;
+    }
+</style>
+
+<!-- <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Signup</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header> -->
+
+<section class="section-50">
+    <div class="container">
+        <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
+
+        <div class="notification-ui_dd-content  mr-4">
+            <div class="notification-list " *ngFor="let n of notifications" [ngClass]="n.vu == false ? 'notification-list--unread' : ''">
+                <div class="notification-list_content">
+                    <div class="notification-list_img">
+                        <img src="assets/img/notification.png" alt="imag">
+                    </div>
+                    <div class="notification-list_detail">
+                        <p><b class="text-danger"> Date de péremption proche: </b></p>
+                        <p class="text-muted">{{n.contenu}}</p>
+                        <!-- <p class="text-muted"><small>{{n.updatedAt | date: 'dd/MM/yyyy'}}</small></p> -->
+
+                    </div>
+                </div>
+                <div class="notification-list_feature-img">
+                    <p class="text-muted"><b>{{n.updatedAt | date: 'dd/MM/yyyy'}}</b></p>
+
+                </div>
+            </div>
+            <div class="notification-list">
+                <div class="notification-list_content">
+                    <div class="notification-list_img">
+                        <img src="assets/img/notification.png" alt="imag">
+                    </div>
+                    <div class="notification-list_detail">
+                        <p><b>Brian Cumin</b> reacted to your post</p>
+                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, dolorem.</p>
+                        <p class="text-muted"><small>10 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="notification-list_feature-img">
+                    <img src="https://i.imgur.com/bpBpAlH.jpg" alt="Feature image">
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <a href="#!" class="dark-link">Load more activity</a>
+        </div>
+
+    </div>
+</section>
+<!-- 
+<div class="card mt-4 mr-4">
+    <div class="card-header">
+        Notifications
+    </div>
+    <ul class="list-group list-group-flush">
+        <li href="bhdj" *ngFor="let n of notifications" class="list-group-item rounded notification">
+            <div class="container">
+                <div class="row align-items-center" style="height: 80px;">
+                    <div class="col-1 bg-gray-100"><i class="fa fa-eye"></i></div>
+                    <div class="col-11">{{n.contenu}}</div>
+                </div>
+            </div>
+        </li>
+
+        --<li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li> --
+</ul>
+</div> -->

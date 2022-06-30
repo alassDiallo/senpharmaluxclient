@@ -1,0 +1,98 @@
+<div class="row  m-4" *ngIf="medicament">
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert" *ngIf="ajout">
+        <strong>le medicament a été ajouté dans votre panier </strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="card card-deco">
+        <div class="row">
+            <div class="col-md-4 m-4" style="" style="color:white;">
+                <img src="{{medicament.image}}" style="" />
+                <!-- <div class="card-body">
+        <p class="card-text">{{medicament.libelle}}</p>
+        <div class="badge rounded-pill badge-success text-white"> -->
+                <!-- {{medicament.Categorie.libelle}} -->
+
+                <!-- </div>
+        <div class="pull-right text-black" style="position: absolute;bottom:10px;right: 5px;">
+            <strong>{{medicament.prixPublic}} Franc CFA</strong>
+        </div>
+    </div> -->
+            </div>
+            <div class="col-md-6 m-4 ">
+                <h2>{{medicament.libelle}}</h2>
+                <h5 class="text-success">{{medicament.nom}}</h5>
+                <hr />
+                <h6 class=""><strong>{{medicament.Categorie.libelle}}</strong></h6>
+                <hr />
+                <h6><strong>Prix : {{medicament.prixPublic}} CFA</strong></h6>
+                <div class="bg-light text-center mt-4" style="padding: 10px;">
+                    <span *ngIf="medicament.Stocks[0].quantiteStock > 0"
+                        class="badge rounded-pill badge-success text-white"><i class="fa fa-check"></i> en Stock</span>
+                    <span *ngIf="medicament.Stocks[0].quantiteStock < 1"
+                        class="badge rounded-pill badge-danger text-white"><i class="fa fa-strash"></i>
+                        indisponible</span>
+                </div>
+                <div class="mt-4" *ngIf="medicament.venteLibre && medicament.Stocks[0].quantiteStock > 0">
+                    <form [formGroup]="formG" (ngSubmit)="ajoutPanier(medicament)">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <select class="form-select" formControlName="quantite">
+                                    <option value="{{i+1}}" *ngFor="let q of taille | slice:0:10;let i=index">
+                                        {{i+1}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-success form-control "
+                                    [disabled]="formG.invalid || medicament.Stocks[0].quantiteStock<1"
+                                    (click)="ajoutPanier(medicament)"><i class="fa fa-shopping-cart"></i>
+                                    Ajouter au panier</button>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+                <div *ngIf="!medicament.venteLibre" class="text-danger text-italic">
+                    Ce medicament ne peut etre vendu sans ordonnance
+                </div>
+                <div class="pull-right">
+                    reference : {{medicament.reference}}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card card-deco  mb-4" *ngIf="medicaments?.length !=0">
+        <h4 class="text-center m-4">Produits simmilaires</h4>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2" *ngIf="medicaments?.length !=0"
+            style="margin-top: 20px;">
+            <div class="card med m-4" style="" style="color:white;"
+                *ngFor="let medicament of medicaments;let i = index">
+                <img src="{{medicament.image}}" class="w-100" style="" />
+                <div class="card-body">
+                    <p class="card-text">{{medicament.libelle}}</p>
+                    <div class="badge rounded-pill badge-success text-white">
+
+
+                    </div>
+                    <div class="pull-right text-black" style="position: absolute;bottom: 0px;right: 5px;">
+                        <strong>{{medicament.prixPublic}} Franc CFA</strong>
+                    </div>
+                </div>
+
+                <a class="stretched-link" style="text-decoration: none;color: white;"
+                    href="/detail/{{medicament.libelle.replaceAll(' ','-')}}"></a>
+                <div class="clearfix" *ngIf="i % 3==0"></div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="text-center m-4" *ngIf="!medicament">
+    <h3>Ce medicament n'existe pas</h3>
+</div>

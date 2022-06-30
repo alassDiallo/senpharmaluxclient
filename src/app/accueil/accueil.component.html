@@ -1,0 +1,368 @@
+<header>
+    <nav class="navbar navbar-expand-lg bg-success fixed-top" role="navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="assets/img/logoLuxDev1aa.png" height="50" width="50"
+                    class="d-inline-block align-text-center mr-2" /><strong class="text-white">SENPHARMALUX</strong></a>
+            <button class="navbar-toggler  text-light btn btn-light" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                style="color:rgb(246, 120, 120)" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color:white"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <form class="d-flex col-md-6" role="search" (submit)="recherche()">
+                    <!-- <i class="fa fa-search" id="basic-addon1"></i> -->
+                    <input class="form-control me-2" type="search" placeholder="recherche..." formcontrol="rechercher"
+                        aria-label="Search" aria-describedby="basic-addon1">
+                    <button class="btn btn-outline-light" type="submit">rechercher</button>
+                </form>
+                <div class="d-flex" style="">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="btn nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" *ngIf="!isAuth">
+                                <i class="fad fa-sign-in-alt"></i> Se connecter
+                            </a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" *ngIf="isAuth">
+                                <img class="rounded-circle" src="assets/img/user.svg" height="40" width="40"
+                                    class="d-inline-block align-text-center mr-2"><strong>{{nom}}</strong>
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="!isAuth">
+                                <li class="dropdown-item"><a class="btn btn-success form-control" routerLink="connexion"
+                                        role="button">
+                                        <i class="fad fa-sign-in-alt text-xs mr-1"></i>Se connecter</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-dark" routerLink="/mon-compte"><i
+                                            class="fad fa-user-alt text-xs mr-1"></i> votre compte</a></li>
+                                <li>
+                                <li><a class="dropdown-item text-dark" routerLink="/mon-compte/mescommandes"><i
+                                            class="fad fa-shopping-basket mr-1"></i> mes
+                                        commandes</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a routerLink="/inscription" class="dropdown-item text-dark">
+                                        <i class="fad fa-user-circle mr-1"></i>
+                                        creer compte un compte
+                                    </a></li>
+                            </ul>
+
+                            <ul class="dropdown-menu " aria-labelledby="navbarDropdown" *ngIf="isAuth">
+                                <li><a class="dropdown-item text-dark px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                                        routerLink="/mon-compte">
+                                        <i class="fad fa-user-alt text-xs mr-1"></i> mon compte
+                                    </a></li>
+                                <li>
+                                    <a class="dropdown-item text-dark px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                                        routerLink="/mon-compte/mescommandes">
+                                        <i class="fad fa-shopping-basket mr-1"></i> mes commandes
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="dropdown-item "><a
+                                        class="btn btn-danger px-4 py-2 block capitalize font-medium text-sm tracking-wide hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                                        (click)="deconnexion()">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        Se deconnecter
+                                    </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- <div class="d-flex" style="" *ngIf="!isAuth">
+                    <a class="btn text-white" routerLink="connexion" style="color: white;text-decoration:none">Se
+                        connecter</a>
+                    <a class="btn text-white" routerLink="inscription"
+                        style="color: white;text-decoration:none">S'inscrire</a>
+                </div> -->
+                    <!-- <div class="dropdown d-flex ml-2" *ngIf="isAuth" style=""> -->
+                    <!-- user -->
+                    <!-- <button class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
+                        <div class="w-8 h-8 overflow-hidden rounded-full">
+                            <img class="w-full h-full object-cover" src="assets/img/user.svg">
+                        </div>
+
+                        <div class="ml-2 capitalize flex ">
+                            <h1 class="text-sm text-white-800 font-semibold m-0 p-0 leading-none">{{nom}}</h1>
+                            <i class="fad fa-chevron-down ml-2 text-xs leading-none"></i>
+                        </div>
+                    </button>
+
+                    <button class="hidden fixed top-0 left-0 z-10 w-full h-full menu-overflow"></button>
+
+                    <div style="width: 200px;"
+                        class="text-gray-500 menu hidden md:mt-10 md:w-full rounded bg-white shadow-md absolute z-20 right-0 mt-2 py-2 animated faster"> -->
+
+                    <!-- item -->
+                    <!-- <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                            routerLink="/espace" *ngIf="role == 'admin'">
+                            <i class="fad fa-user-edit text-xs mr-1"></i> Tableau de bord
+                        </a> -->
+                    <!-- end item -->
+
+                    <!-- item -->
+                    <!-- <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                        routerLink="/creer-vente">
+                        <i class="fad fa-user-edit text-xs mr-1"></i> Ajouter vente
+                    </a> -->
+
+                    <!-- end item -->
+                    <!-- item -->
+                    <!-- <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                        routerLink="/espace/ventes">
+                        <i class="fad fa-user-edit text-xs mr-1"></i> lister ventes
+                    </a> -->
+
+                    <!-- end item -->
+                    <!-- item -->
+                    <!-- <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                            href="#">
+                            <i class="fad fa-inbox-in text-xs mr-1"></i> mon compte
+                        </a> -->
+                    <!-- end item -->
+
+                    <!-- item -->
+                    <!-- <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                            routerLink="/mescommandes" *ngIf="role != 'admin' && role !='vendeur'">
+                            <i class="fad fa-badge-check text-xs mr-1"></i> mes commandes
+                        </a> -->
+                    <!-- end item -->
+
+                    <!-- item -->
+                    <!-- <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                            href="#" *ngIf="role != 'admin' && role !='vendeur'">
+                            <i class="fad fa-comment-alt-dots text-xs mr-1"></i> mes achats
+                        </a> -->
+                    <!-- end item -->
+
+                    <!-- <hr> -->
+
+                    <!-- item -->
+                    <!-- <button
+                            class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                            (click)="deconnexion()">
+                            <i class="fad fa-user-times text-xs mr-1"></i>
+                            Se deconnecter
+                        </button> -->
+                    <!-- end item -->
+
+                    <!-- </div> -->
+
+                    <!-- end user -->
+                    <!-- </div> -->
+                </div>
+                <div class="d-flex ml-2">
+                    <a class="text-white" routerLink="panier" style="text-decoration: none"><i
+                            class="fa fa-shopping-cart"></i> Panier
+                        <span class="badge badge-danger"
+                            *ngIf="elementspanier.length>0">{{elementspanier.length}}</span></a>
+                </div>
+                <div class="d-flex ml-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <a class="text-white" routerLink="panier" style="text-decoration: none">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-primary" *ngIf="nbr_notif_new>0">{{nbr_notif_new}}</span></a>
+                </div>
+
+                <!-- end user -->
+            </div>
+        </div>
+
+
+    </nav>
+
+</header>
+
+
+<main style="background-color: white; margin-top:65px" class="row  justify-content-center w-100">
+    <router-outlet></router-outlet>
+    <footer class="footer bg-success">
+        <div class="container bottom_border">
+            <div class="row">
+                <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Contactez-nous</h5>
+                    <!--headin5_amrc-->
+                    <p class="mb10">SENPHARMALUX est une application pharmaceutique mise en place dans le cadre de la
+                        cooperation
+                        du sénégal et du luxembourg
+                    </p>
+                    <p><i class="fa fa-location-arrow"></i> Bambey université sur la route national</p>
+                    <p><i class="fa fa-phone"></i> +221 77 254 45 89 </p>
+                    <p><i class="fa fa fa-envelope"></i> senpharmalux@gmail.com </p>
+
+
+                </div>
+
+
+                <div class=" col-sm-4 col-md  col-6 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">liens utils</h5>
+                    <!--headin5_amrc-->
+                    <ul class="footer_ul_amrc">
+                        <li><a href="http://webenlance.com">Image Rectoucing</a></li>
+                        <li><a href="http://webenlance.com">Clipping Path</a></li>
+                        <li><a href="http://webenlance.com">Hollow Man Montage</a></li>
+                        <li><a href="http://webenlance.com">Ebay & Amazon</a></li>
+                        <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
+                        <li><a href="http://webenlance.com">Image Cropping</a></li>
+                    </ul>
+                    <!--footer_ul_amrc ends here-->
+                </div>
+
+
+                <div class=" col-sm-4 col-md  col-6 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">liens utile</h5>
+                    <!--headin5_amrc-->
+                    <ul class="footer_ul_amrc">
+                        <li><a href="http://webenlance.com">Remove Background</a></li>
+                        <li><a href="http://webenlance.com">Shadows & Mirror Reflection</a></li>
+                        <li><a href="http://webenlance.com">Logo Design</a></li>
+                        <li><a href="http://webenlance.com">Vectorization</a></li>
+                        <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
+                        <li><a href="http://webenlance.com">Image Cropping</a></li>
+                    </ul>
+                    <!--footer_ul_amrc ends here-->
+                </div>
+
+
+                <div class=" col-sm-4 col-md  col-12 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Suivez-nous</h5>
+                    <!--headin5_amrc ends here-->
+
+                    <ul class="footer_ul2_amrc">
+                        <li><a href="#"><i class="fab fa-facebook-f fleft padding-right"></i> </a>
+                            <p>facebook...<a href="#">https://www.facebook.com/senpharmalux</a></p>
+                        </li>
+                        <li><a href="#"><i class="fab fa-instagram fleft padding-right"></i> </a>
+                            <p>instagram...<a href="#">https://www.instagram.com/senpharmalux</a></p>
+                        </li>
+                        <li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
+                            <p>twitter...<a href="#">https://www.twitter.com/senpharmalux</a></p>
+                        </li>
+                    </ul>
+                    <!--footer_ul2_amrc ends here-->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <ul class="foote_bottom_ul_amrc">
+                <li><a routerLink="/">Accueil</a></li>
+                <li><a href="http://webenlance.com">A propos</a></li>
+                <!-- <li><a href="http://webenlance.com">Services</a></li>
+                <li><a href="http://webenlance.com">Pricing</a></li>
+                <li><a href="http://webenlance.com">Blog</a></li> -->
+                <li><a href="http://webenlance.com">Contact</a></li>
+            </ul>
+            <!--foote_bottom_ul_amrc ends here-->
+            <p class="text-center">Copyright @2022 | Designed With by <a href="#">senpharmalux</a></p>
+
+            <ul class="social_footer_ul">
+                <li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="http://webenlance.com"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <!--social_footer_ul ends here-->
+        </div>
+
+    </footer>
+    <!-- <footer class="row container" style="height: 400px;background-color: #198754;">
+        <div class="col-md-3">
+            <img src="assets/img/logoLuxDev11.png" height="400px" width="300px" />
+        </div>
+        <div class="col-md-4 mt-4">
+            <ul class="" style="background-color: #198754;">
+                <li class="">Accueil</li>
+                <li class="">A propos</li>
+                <li class="">Contactez-nous</li>
+                <li class="">se connecter</li>
+            </ul>
+
+        </div>
+        <div style="">
+            <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        </div>
+    </footer> -->
+</main>
+<!-- FOOTER -->
+<!-- <div class="container bg-success text-center justify-content-center"
+    style="position: fixed; bottom: 10px;right: 10px;width: 50px;height:50px;border-radius: 50%;">
+    <div class="text-center" style="">
+        <i class="fa fa-angle-double-up mt-3" style="color: white;"></i>
+    </div>
+    <a class="stretched-link" href="#"></a>
+</div>
+ -->
+<!-- <div style="width: 500px;height: 300px;background-color: yellow;"> -->
+<!-- {{data.message}} -->
+<!-- </div> -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Notifications</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <section class="section-50">
+                    <div class="container">
+                        <h3 class="m-b-50 heading-line">Notifications <i class="fa fa-bell text-muted"></i></h3>
+
+                        <div class="notification-ui_dd-content  mr-4">
+                            <div class="notification-list" *ngFor="let n of notificationClient">
+                                <div class="notification-list_content">
+                                    <div class="notification-list_img">
+                                        <img src="assets/img/notification.png" alt="imag">
+                                    </div>
+                                    <div class="notification-list_detail">
+                                        <p><b class="text-success"> Commande Validé </b></p>
+                                        <p class="text-muted">{{n.contenu}}</p>
+                                        <p class="text-muted"><small>{{n.createdAt | date: 'dd/MM/yyyy'}}</small></p>
+
+                                    </div>
+                                </div>
+                                <div class="notification-list_feature-img">
+                                    <p class="text-muted"><b>{{n.updatedAt | date: 'dd/MM/yyyy'}}</b></p>
+
+                                </div>
+                            </div>
+
+                            <!-- <div class="notification-list">
+                                <div class="notification-list_content">
+                                    <div class="notification-list_img">
+                                        <img src="https://i.imgur.com/ltXdE4K.jpg" alt="user">
+                                    </div>
+                                    <div class="notification-list_detail">
+                                        <p><b>Brian Cumin</b> reacted to your post</p>
+                                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde, dolorem.</p>
+                                        <p class="text-muted"><small>10 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <div class="notification-list_feature-img">
+                                    <img src="https://i.imgur.com/bpBpAlH.jpg" alt="Feature image">
+                                </div>
+                            </div> -->
+                            <!-- </div> -->
+
+                            <!-- <div class="text-center">
+                            <a href="#!" class="dark-link">Load more activity</a>
+                        </div> -->
+
+                            <!-- </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="visitedNotification()" class="btn btn-primary"
+                    data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div> -->

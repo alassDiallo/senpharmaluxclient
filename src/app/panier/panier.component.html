@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <div class="row" *ngIf="medicaments.length>0">
+        <div class="card col-md-7 col-lg-8 justify-content-center card-deco">
+            <div class="container row">
+                <h5 class="mt-4">Panier ({{medicaments.length}})</h5>
+                <hr />
+                <div class="" *ngIf="medicaments.length > 0">
+                    <app-detail-panier [medicament]="m" *ngFor="let m of medicaments"></app-detail-panier>
+                </div>
+                <div *ngIf="medicaments.length <1">
+                    <h4>Votre panier est vide</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-lg-4">
+            <div class="card card-deco">
+                <div class="card-body">
+                    <h6>Resumé du panier</h6>
+                    <hr />
+                    Sous total <strong class="pull-right">{{total}} FCFA</strong>
+                    <hr />
+                </div>
+                <a class="btn btn-success mb-4 ml-4 mr-4 " routerLink="resumer-panier"><strong>Commander ({{total}}
+                        FCFA)</strong></a>
+            </div>
+
+        </div>
+    </div>
+    <div class="card justify-content-center text-center card-deco" *ngIf="medicaments.length<1">
+        <div class="bg-danger text-center mt-4 mb-4"
+            style="border-radius:100px; margin: auto; width: 150px;height: 150px;">
+            <img class="h-100 w-100" src="assets/img/chariot.jpg" style="" />
+        </div>
+        <strong class="">votre panier est vide</strong>
+        <p class="m-2">
+            parcourez nous produits et decouvrez nos meilleurs offres
+        </p>
+        <div class="m-4">
+
+            <a class="btn btn-success" routerLink="/">commencez vos achats</a>
+        </div>
+    </div>
+
+
+</div>

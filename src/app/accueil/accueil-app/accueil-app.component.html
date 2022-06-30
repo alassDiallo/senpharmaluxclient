@@ -1,0 +1,121 @@
+<div class="card card-deco container mt-4">
+    <div class="row justify-content-center" style="">
+        <div class="col-md-3 mt-4" style="">
+            <div class="">
+                <div class="w-100">
+                    <ul class="list-group w-100">
+                        <li class="list-group-item d-flex"><strong>Categories</strong></li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let cat of categories|slice:0:10"
+                            style="font-size: 12px;color: black;font-style: italic;">
+                            {{cat.libelle |lowercase}} <a [routerLink]="['/recherche']" [queryParams]="{q:cat.libelle}"
+                                class="stretched-link"></a>
+                            <!-- <span class="badge badge-primary badge-pill">{{cat.Medicaments.length}}</span> -->
+
+                        </li>
+                        <!-- <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let cat of categories" style="font-size: 12px;color: black;font-style: italic;">
+                            {{cat.libelle |lowercase}} <a [routerLink]="['/recherche']" [queryParams]="{q:cat.libelle}"
+                                class="stretched-link"></a> -->
+                        <!-- <span class="badge badge-primary badge-pill">{{cat.Medicaments.length}}</span> -->
+
+                        <!-- </li> -->
+                        <!-- <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let cat of categories" style="font-size: 12px;color: black;font-style: italic;">
+                            {{cat.libelle |lowercase}} <a [routerLink]="['/recherche']" [queryParams]="{q:cat.libelle}"
+                                class="stretched-link"></a> -->
+                        <!-- <span class="badge badge-primary badge-pill">{{cat.Medicaments.length}}</span> -->
+
+                        <!-- </li> -->
+                        <!-- <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let cat of categories" style="font-size: 12px;color: black;font-style: italic;">
+                            {{cat.libelle |lowercase}} <a [routerLink]="['/recherche']" [queryParams]="{q:cat.libelle}"
+                                class="stretched-link"></a> -->
+                        <!-- <span class="badge badge-primary badge-pill">{{cat.Medicaments.length}}</span> -->
+                        <!-- 
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let cat of categories" style="font-size: 12px;color: black;font-style: italic;">
+                            {{cat.libelle |lowercase}} <a [routerLink]="['/recherche']" [queryParams]="{q:cat.libelle}"
+                                class="stretched-link"></a> -->
+                        <!-- <span class="badge badge-primary badge-pill">{{cat.Medicaments.length}}</span> -->
+
+                        <!-- </li> -->
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div id="carouselExampleCaptions" class="carousel slide carousel-fade bg-white mb-4 col-md-8 mt-4 "
+            data-bs-ride="carousel" style="">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/img/vitamin1.png" class="d-block imc w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/c111.png" class="d-block imc w-100" alt="..." height="">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="assets/img/c211.png" class="d-block imc w-100" alt="..." height="">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="card card-deco container">
+    <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 row-cols-lg-6  g-2" *ngIf="medicaments?.length !=0"
+        style="margin-top: 20px;">
+        <div class="card med mb-4" style="" style="color:white;"
+            *ngFor="let medicament of medicaments|paginate:{itemsPerPage:32,currentPage:page};;let i = index">
+
+            <img src="{{medicament.image}}" class="" />
+
+            <div class="card-body">
+                <p class="card-text">{{medicament.libelle}}</p>
+                <div class="badge rounded-pill badge-success text-white">
+                    {{medicament.Categorie.libelle}}
+
+                </div>
+                <div class="pull-right text-black" style="position: absolute;bottom: 0px;right: 5px;">
+                    <strong>{{medicament.prixPublic}} Franc CFA</strong>
+                </div>
+            </div>
+
+            <a href="#" class="stretched-link" style="text-decoration: none;color: white;"
+                routerLink="/detail/{{medicament.libelle.replaceAll(' ','-')}}"></a>
+            <div class="clearfix" *ngIf="i % 3==0"></div>
+        </div>
+
+
+    </div>
+    <div class="text-center m-4">
+        <pagination-controls (pageChange)="changerPage($event)" previousLabel="precedent" nextLabel="suivant"
+            [responsive]="true" *ngIf="medicaments.length >0"></pagination-controls>
+    </div>
+</div>

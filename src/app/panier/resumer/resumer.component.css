@@ -1,0 +1,17 @@
+.choix {
+    align-items: center;
+
+}
+
+.te {
+    font-size: 12px;
+}
+
+.l a {
+    color: black;
+    text-decoration: none;
+}
+
+.l:hover {
+    background-color: grey
+}
