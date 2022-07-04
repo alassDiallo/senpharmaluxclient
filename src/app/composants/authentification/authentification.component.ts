@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { InformationPersoService } from 'src/app/services/information-perso.service';
 import { ServiceauthentificationService } from 'src/app/services/serviceauthentification.service';
 import { headers } from 'src/models/config';
 
@@ -16,7 +17,11 @@ export class AuthentificationComponent implements OnInit {
 
   formGroup!: FormGroup
 
-  constructor(private form: FormBuilder, private routes: Router, private serviceauth: ServiceauthentificationService) {
+  constructor(private form: FormBuilder,
+    private routes: Router,
+    private serviceauth: ServiceauthentificationService,
+    private servinfo: InformationPersoService
+  ) {
 
   }
 
@@ -47,6 +52,7 @@ export class AuthentificationComponent implements OnInit {
 
         this.isAuth = false
         this.isLoading = false;
+        console.log(user)
         const utilisateur = {
           nom: user.utilisateur.prenom + " " + user.utilisateur.nom,
           email: user.utilisateur.email,
@@ -54,9 +60,9 @@ export class AuthentificationComponent implements OnInit {
           adresse: user.utilisateur.adresse
 
         }
-        const roleuser = user.utilisateur.profil
         localStorage.setItem('807605274673228623802113__luxdev-access-token', user.token)
         localStorage.setItem('user', JSON.stringify(utilisateur))
+        this.servinfo.getInfo()
         this.routes.navigate(['/'])
         return
       })

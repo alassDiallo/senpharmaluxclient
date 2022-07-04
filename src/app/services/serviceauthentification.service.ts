@@ -12,13 +12,12 @@ export class ServiceauthentificationService {
 
   isAuth: boolean = false
   subjauth = new Subject<boolean>()
-  constructor(private routes: Router, private http: HttpClient, private bd: EnvoieService) { }
+  constructor(private routes: Router,
+    private http: HttpClient, private bd: EnvoieService) { }
 
   connexion(login: string, mp: string) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${config.apiUrl}/auth/login/`, { email: login, motDePasse: mp }, {
-        headers: headers
-      }).subscribe((user) => {
+      this.bd.envoi(`auth/login/`, { email: login, motDePasse: mp }).subscribe((user) => {
         resolve(user)
       }, (error) => {
 

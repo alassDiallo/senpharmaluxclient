@@ -50,9 +50,14 @@
                                 <div class="form-group col-md-6">
                                     <label>Telephone</label>
                                     <input type="text" class="form-control" formControlName="telephone"
-                                        [ngClass]="errorTelephone?'is-invalid':''" name="telephone">
+                                        [ngClass]="errorTelephone?'is-invalid':''" name="telephone" maxlength="9"
+                                        id="champsTelephone">
                                     <div class="text-danger" *ngIf="errorTelephone">
                                         ce numero de telephone est deja utilisé
+                                    </div>
+                                    <div class="text-danger"
+                                        *ngIf="formGroup.invalid && formGroup.controls.telephone.errors?.erreurTelephone">
+                                        le format du numéro de téléphone est invalide
                                     </div>
                                 </div>
                             </div>

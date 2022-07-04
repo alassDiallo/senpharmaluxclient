@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { InformationPersoService } from 'src/app/services/information-perso.service';
 import { ServiceclientService } from 'src/app/services/serviceclient.service';
 import { ServiceutilisateurService } from 'src/app/services/serviceutilisateur.service';
-import { nom } from 'src/models/config';
+import { nom, validationTelephone } from 'src/models/config';
 
 @Component({
   selector: 'app-compte',
@@ -33,13 +33,20 @@ export class CompteComponent implements OnInit {
     this.servinfo.getInfo()
     this.initForm()
 
+    $('#champsTelephone').on('keypress', function (e) {
+      if (e.keyCode < 48 || e.keyCode > 57) {
+        return false;
+      }
+      return true;
+    })
+
   }
 
   initForm() {
     this.formGroup = this.form.group({
       nom: ['', [Validators.required]],
       prenom: ['', [Validators.required]],
-      telephone: ['', [Validators.required]],
+      telephone: ['', [Validators.required, Validators.maxLength(90), Validators.minLength(9), validationTelephone]],
       adresse: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
     })

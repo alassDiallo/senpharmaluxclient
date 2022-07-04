@@ -36,6 +36,7 @@ export class AccueilComponentApp implements OnInit {
   categories!: any[]
   submed!: Subscription
   subCat!: Subscription
+  subinfo!: Subscription
 
   subNotificationClient!: Subscription
   notificationClient!: any[]
@@ -46,7 +47,10 @@ export class AccueilComponentApp implements OnInit {
     private bd: EnvoieService,
     private servinfo: InformationPersoService,
     private token: GetTokenService,
-    private servicecat: ServicecategorieService, private route: Router, private servicePanier: PanierService, private formG: FormBuilder) {
+    private servicecat: ServicecategorieService,
+    private route: Router,
+    private servicePanier: PanierService,
+    private formG: FormBuilder) {
     this.socket = io(config.apiUrl);
   }
 
@@ -61,7 +65,7 @@ export class AccueilComponentApp implements OnInit {
     })
     this.token.getTken()
     this.getPanier()
-    this.servinfo.subinfo.subscribe(info => {
+    this.subinfo = this.servinfo.subinfo.subscribe(info => {
       this.nom = info.nom
     })
     this.servinfo.getInfo()
@@ -140,6 +144,7 @@ export class AccueilComponentApp implements OnInit {
 
   ngDestroy(): void {
     this.subCat.unsubscribe()
+    this.subinfo.unsubscribe()
     this.submed.unsubscribe()
   }
 
