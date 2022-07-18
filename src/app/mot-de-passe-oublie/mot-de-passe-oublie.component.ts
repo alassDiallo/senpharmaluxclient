@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ServiceauthentificationService } from '../services/serviceauthentification.service';
 
@@ -12,11 +13,13 @@ export class MotDePasseOublieComponent implements OnInit {
   formG!: FormGroup
   serviceAuth!: Subscription
   errorEmailInvalid: boolean = false
+  testeEmail: boolean = false
 
-  constructor(private serviceauth: ServiceauthentificationService, private formB: FormBuilder) { }
+  constructor(private serviceauth: ServiceauthentificationService,
+    private formB: FormBuilder, private route: Router) { }
 
   ngOnInit(): void {
-
+    $('#EmailEnvoye').modal('hide')
     this.initForm()
   }
 
@@ -35,6 +38,12 @@ export class MotDePasseOublieComponent implements OnInit {
         }
         else {
           this.errorEmailInvalid = false
+          $('#EmailEnvoye').modal('show')
+          setTimeout(() => {
+            $('#EmailEnvoye').modal('hide')
+            this.route.navigate(['/'])
+          }, 2000)
+          this.testeEmail = true
         }
       })
   }

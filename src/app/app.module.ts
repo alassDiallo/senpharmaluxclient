@@ -44,6 +44,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { CompteComponent } from './profil/compte/compte.component';
 import { ModifierMotDePasseComponent } from './profil/modifier-mot-de-passe/modifier-mot-de-passe.component';
 import { MotDePasseOublieComponent } from './mot-de-passe-oublie/mot-de-passe-oublie.component';
+import { ReinitialiserMpComponent } from './mot-de-passe-oublie/reinitialiser-mp/reinitialiser-mp.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import { MotDePasseOublieComponent } from './mot-de-passe-oublie/mot-de-passe-ou
     CompteComponent,
     ModifierMotDePasseComponent,
     MotDePasseOublieComponent,
+    ReinitialiserMpComponent,
 
   ],
   imports: [
