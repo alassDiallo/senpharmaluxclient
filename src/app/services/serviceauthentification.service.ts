@@ -59,7 +59,7 @@ export class ServiceauthentificationService {
   modifierMp(email: String) {
 
     return new Promise((resolv, reject) => {
-      this.bd.envoi('auth/modifiermotdepass', { email: email }).subscribe(reponse => {
+      this.bd.envoi('auth/modifiermotdepass', { email: email, lien: 'http://192.168.1.39:4200/reinitialiser-mot-de-passe/' }).subscribe(reponse => {
         resolv(reponse)
       }, err => {
         reject(err)

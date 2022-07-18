@@ -19,6 +19,7 @@ import { CompteComponent } from './profil/compte/compte.component';
 import { MotDePasseOublieComponent } from './mot-de-passe-oublie/mot-de-passe-oublie.component';
 import { AccueilAppComponent } from './accueil/accueil-app/accueil-app.component';
 import { DetailComponent } from './detail/detail.component';
+import { ReinitialiserMpComponent } from './mot-de-passe-oublie/reinitialiser-mp/reinitialiser-mp.component';
 const routes: Routes = [
   // { path: '', component: AppComponent },
   {
@@ -27,7 +28,7 @@ const routes: Routes = [
 
       { path: 'inscription', component: InscriptionComponent },
       { path: 'mot-de-passe-oublie', component: MotDePasseOublieComponent },
-
+      { path: 'reinitialiser-mot-de-passe/:token', component: ReinitialiserMpComponent },
       { path: 'detail/:id', component: DetailComponent },
       { path: '', component: AccueilAppComponent },
       { path: 'panier', component: PanierComponent },
