@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServiceutilisateurService } from 'src/app/services/serviceutilisateur.service';
 
@@ -28,7 +28,15 @@ export class ModifierMotDePasseComponent implements OnInit {
     this.formG = this.formB.group({
       motDePasse: ['', [Validators.required]],
       newmotDePasse: ['', [Validators.required]],
-      confmotDePasse: ['', [Validators.required]],
+      confmotDePasse: ['', [Validators.required, Validators.maxLength(20),
+      (c: AbstractControl): { [key: string]: boolean } | null => {
+        if (c.value) {
+          if (c.value !== this.formG.value['newmotDePasse']) {
+            return { 'errorMp': true }
+          }
+        }
+        return null
+      }]],
 
     })
   }

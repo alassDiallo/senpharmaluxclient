@@ -102,7 +102,6 @@ export class ServiceclientService {
             resolve(response);
           },
           (error) => {
-
             reject(error);
           }
         )
