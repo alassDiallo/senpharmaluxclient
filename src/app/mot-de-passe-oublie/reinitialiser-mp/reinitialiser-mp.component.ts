@@ -54,7 +54,7 @@ export class ReinitialiserMpComponent implements OnInit {
       }
       this.bd.envoi('auth/reinitialiserMp', donnees).subscribe((data: any) => {
         if (!data.error) {
-          return this.navigation.navigate(['/'])
+          return this.navigation.navigate(['/connexion'])
         }
         return
 

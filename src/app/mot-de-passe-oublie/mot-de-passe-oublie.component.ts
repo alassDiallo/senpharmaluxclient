@@ -41,7 +41,7 @@ export class MotDePasseOublieComponent implements OnInit {
           $('#EmailEnvoye').modal('show')
           setTimeout(() => {
             $('#EmailEnvoye').modal('hide')
-            this.route.navigate(['/'])
+            this.route.navigate(['/connexion'])
           }, 2000)
           this.testeEmail = true
         }

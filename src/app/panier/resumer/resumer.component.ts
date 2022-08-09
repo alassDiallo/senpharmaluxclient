@@ -18,6 +18,7 @@ export class ResumerComponent implements OnInit {
   medicaments: any[] = []
   total: number = 0
   types!: any[]
+  isSend: boolean = false
   formG!: FormGroup
   info!: any
   subtypepayement!: Subscription
@@ -49,6 +50,7 @@ export class ResumerComponent implements OnInit {
   }
 
   valider() {
+    this.isSend = true
 
     const v = {
       cout: this.total,
@@ -57,17 +59,21 @@ export class ResumerComponent implements OnInit {
       medicaments: this.medicaments
 
     };
+    setTimeout(() => {
+      this.isSend = false
+      this.panierService.valider(v)
+        .then((message: any) => {
+          if (!message.error) {
+            this.panierService.supprimerPanier()
+            this.bd.envoi('send-notification', { 'data': 'Une nouvelle commande client' })
+            this.route.navigate(['/'])
 
-    this.panierService.valider(v)
-      .then((message: any) => {
-        if (!message.error) {
-          this.panierService.supprimerPanier()
-          this.bd.envoi('send-notification', { 'data': 'Une nouvelle commande client' })
-          this.route.navigate(['/'])
+          }
 
-        }
+        })
+    }, 5000)
 
-      })
+
   }
 
 

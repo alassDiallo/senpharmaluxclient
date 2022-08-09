@@ -19,6 +19,7 @@ export class InscriptionComponent implements OnInit {
   erreurTelephone: boolean = false
   erreurEmail: boolean = false
   submitErr: boolean = false
+  isSend: boolean = false
   constructor(private form: FormBuilder,
     private servicaut: ServiceauthentificationService,
     private servInfo: InformationPersoService,
@@ -78,6 +79,7 @@ export class InscriptionComponent implements OnInit {
 
     if (this.formGroup.valid) {
       this.submitErr = false
+      this.isSend = true
       const nom = this.formGroup.value['nom']
       const prenom = this.formGroup.value['prenom']
       const adresse = this.formGroup.value['adresse']
@@ -93,34 +95,37 @@ export class InscriptionComponent implements OnInit {
         motDePasse: motDePasse,
         profil: "client"
       }
-      this.servicaut.inscription(donnees).then((user: any) => {
-        if (user.err) {
-          if (user.errorTelephone) {
-            this.erreurTelephone = true
-          }
-          else {
-            this.erreurTelephone = false
+      setTimeout(() => {
+        this.servicaut.inscription(donnees).then((user: any) => {
+          this.isSend = false;
+          if (user.err) {
+            if (user.errorTelephone) {
+              this.erreurTelephone = true
+            }
+            else {
+              this.erreurTelephone = false
+
+            }
+            if (user.errorEmail) {
+              this.erreurEmail = true
+            }
+            else {
+              this.erreurEmail = false
+            }
+            return
+
+          } else {
+
+            this.servInfo.addUser(user)
+            this.serveToken.addToken()
+            this.routes.navigate(['/'])
 
           }
-          if (user.errorEmail) {
-            this.erreurEmail = true
-          }
-          else {
-            this.erreurEmail = false
-          }
-          return
-
-        } else {
-
-          this.servInfo.addUser(user)
-          this.serveToken.addToken()
-          this.routes.navigate(['/'])
-
-        }
-      })
-        .catch(err => {
-          console.log(err)
         })
+          .catch(err => {
+            console.log(err)
+          })
+      }, 3000)
     }
   }
 

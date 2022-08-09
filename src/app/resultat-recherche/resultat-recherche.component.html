@@ -1,31 +1,34 @@
 <div class="container mb-4">
-    <h4 class="mt-4">resultat recherche "{{recherche}}"</h4>
-    <div *ngIf="medocs.length >0">
-        {{medocs.length}} éléments trouvé
+    <div *ngIf="isSearching" class="mt-4">
+        <progress value="{{compteur}}" max="100" class="w-100"></progress>
     </div>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" *ngIf="medocs?.length !=0" style="margin-top: 20px;">
-
-        <div class="card med mb-4" style="" style="color:white;" *ngFor="let medicament of medocs;let i = index">
-            <img src="{{medicament.image}}" class="w-100" style="" />
-            <div class="card-body">
-                <p class="card-text">{{medicament.libelle}}</p>
-                <div class="badge rounded-pill badge-success text-white">
-                    {{medicament.Categorie.libelle}}
-
-                </div>
-                <div class="pull-right text-black" style="position: absolute;bottom: 0px;right: 5px;">
-                    <strong>{{medicament.prixPublic}} Franc CFA</strong>
-                </div>
-            </div>
-
-            <a href="#" class="stretched-link" style="text-decoration: none;color: white;"
-                routerLink="/detail/{{medicament.libelle.replaceAll(' ','-')}}"></a>
-            <div class="clearfix" *ngIf="i % 3==0"></div>
+    <div *ngIf="!isSearching">
+        <h4 class="mt-4">resultat recherche "{{recherche}}"</h4>
+        <div *ngIf="medocs.length >0">
+            {{medocs.length}} éléments trouvé
         </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2" *ngIf="medocs?.length !=0"
+            style="margin-top: 20px;">
 
+            <div class="card med mb-4" style="" style="color:white;" *ngFor="let medicament of medocs;let i = index">
+                <img src="{{medicament.image}}" class="w-100" style="" />
+                <div class="card-body">
+                    <p class="card-text">{{medicament.libelle}}</p>
+                    <div class="badge rounded-pill badge-success text-white">
+                        {{medicament.Categorie.libelle}}
 
-    </div>
+                    </div>
+                    <div class="pull-right text-black" style="position: absolute;bottom: 0px;right: 5px;">
+                        <strong>{{medicament.prixPublic}} Franc CFA</strong>
+                    </div>
+                </div>
 
-    <div *ngIf="medocs.length <1">
-        <h5>aucun element trouvé</h5>
+                <a href="#" class="stretched-link" style="text-decoration: none;color: white;"
+                    routerLink="/detail/{{medicament.libelle.replaceAll(' ','-')}}"></a>
+                <div class="clearfix" *ngIf="i % 3==0"></div>
+            </div>
+        </div>
+        <div *ngIf="medocs.length <1">
+            <h5>aucun element trouvé</h5>
+        </div>
     </div>

@@ -61,7 +61,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary form-control"
-                                    [disabled]="formGroup.invalid">
+                                    [disabled]="formGroup.invalid || isLoading ">
                                     <!-- {{ isLoading?'connexion...': 'Se connecter'}} -->
                                     Se connecter
                                     <i class="fas fa-spinner fa-pulse" *ngIf="isLoading"></i>
