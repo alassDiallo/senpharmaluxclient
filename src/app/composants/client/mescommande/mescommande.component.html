@@ -23,8 +23,7 @@
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="justify-content-center" style="align-content: center;" *ngIf="mescommandes.length > 0 ">
-                    <div class="card mb-3 card_deco" style=""
-                        *ngFor="let vente of mescommandes| paginate:{itemsPerPage:3,currentPage:page};let i=index ">
+                    <div class="card mb-3 card_deco" style="" *ngFor="let vente of mescommandes">
                         <div class="card-body justify-content-center">
                             <div class="row" *ngFor="let med of vente.Medicaments">
                                 <div class="col-md-3">
@@ -49,8 +48,6 @@
 
                         </div>
                     </div>
-                    <pagination-controls (pageChange)="changerPage($event)" previousLabel="precedent"
-                        nextLabel="suivant" [responsive]="true" *ngIf="mescommandes.length >0"></pagination-controls>
                 </div>
 
                 <div class="card justify-content-center text-center card-deco" *ngIf="mescommandes.length < 1">
@@ -71,8 +68,7 @@
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="justify-content-center" style="align-content: center;" *ngIf="mesachats.length > 0 ">
-                    <div class="card mb-3 card_deco" style=""
-                        *ngFor="let vente of mesachats| paginate:{itemsPerPage:3,currentPage:pageA};let i=index ">
+                    <div class="card mb-3 card_deco" style="" *ngFor="let vente of mesachats">
                         <div class="card-body justify-content-center">
                             <div class="row" *ngFor="let med of vente.Medicaments">
                                 <div class="col-md-3">
@@ -97,8 +93,7 @@
 
                         </div>
                     </div>
-                    <pagination-controls (pageChange)="changerPageA($event)" previousLabel="precedent"
-                        nextLabel="suivant" [responsive]="true" *ngIf="mesachats.length >0"></pagination-controls>
+
                 </div>
                 <div class="card justify-content-center text-center card-deco" *ngIf="mesachats.length < 1">
                     <div class="bg-danger text-center mt-4 mb-4"
@@ -110,7 +105,6 @@
                         parcourez nous produits et decouvrez nos meilleurs offres
                     </p>
                     <div class="m-4">
-
                         <a class="btn btn-success" routerLink="/">commencez vos achats</a>
                     </div>
 

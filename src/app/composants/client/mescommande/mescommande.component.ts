@@ -17,24 +17,32 @@ export class MescommandeComponent implements OnInit {
   totalLengthA!: number
   pageA: number = 1
 
+  totalLengthAchat!: number
+  pageAchat: number = 1
+
+
   constructor(private servcom: ServicebonClientService) { }
 
   ngOnInit(): void {
 
     this.servcom.mescommandes().then((mescommand: any) => {
-      this.mescommandes = mescommand.filter((element: any) => element.etat == false)
-      this.mesachats = mescommand.filter((element: any) => element.etat == true)
-      this.totalLength = mescommand.filter((element: any) => element.etat == false).length
-      this.totalLengthA = mescommand.filter((element: any) => element.etat == true).length
+      this.mescommandes = mescommand
+      this.totalLength = mescommand.length
+      this.totalLengthA = mescommand.length
 
+    })
+
+    this.servcom.mesachats().then((mescommand: any) => {
+      this.mesachats = mescommand
+      this.totalLengthAchat = mescommand.length
     })
   }
 
   changerPage(event: number) {
     this.page = event
   }
-  changerPageA(event: number) {
-    this.pageA = event
+  changerPageAchat(event: number) {
+    this.pageAchat = event
   }
 
 }
